@@ -7,18 +7,31 @@ import { TaskPanelComponent } from './TaskPanel/TaskPanel.component';
 import { BottomNavbarComponent } from './bottom-navbar/bottom-navbar.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { RouterModule } from '@angular/router';
+import { WholeLayoutComponent } from './whole-layout/whole-layout.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import { PageOneComponent } from './page-one/page-one.component';
+
 @NgModule({
    declarations: [
       AppComponent,
       TaskPanelComponent,
       BottomNavbarComponent,
-      ScheduleComponent
+      ScheduleComponent,
+      WholeLayoutComponent,
+      PageOneComponent,
+      
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
+      MatGridListModule,
+      MatToolbarModule,
+      MatIconModule,
       RouterModule.forRoot([
-         { path: '123', component: ScheduleComponent },
+         { path: 'PageOne', component: PageOneComponent },
+         { path: 'WholeLayout', component: WholeLayoutComponent },
        ])
    ],
    providers: [],

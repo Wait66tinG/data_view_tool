@@ -1,0 +1,8 @@
+#div1 {
+    height:100%;
+    background-color: aqua;
+}
+app-bottom-navbar{
+    position:relative;
+    top:-64px;
+}

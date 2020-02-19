@@ -26,3 +26,4 @@ describe('BottomNavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
