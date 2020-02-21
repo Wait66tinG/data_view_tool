@@ -6,3 +6,7 @@ app-bottom-navbar{
     position:relative;
     top:-50px;
 }
+#title{
+    text-align: center;
+    font-size: larger;
+}
