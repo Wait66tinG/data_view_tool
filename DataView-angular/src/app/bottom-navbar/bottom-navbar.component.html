@@ -1,6 +1,10 @@
-<mat-toolbar color="primary">
-  <span>Third Line</span>
-  <span class="example-spacer"></span>
-  <mat-icon class="example-icon" [routerLink]="['PageOne']">event_available</mat-icon>
-  <mat-icon class="example-icon" [routerLink]="['WholeLayout']">delete</mat-icon>
-</mat-toolbar>
+<nav mat-tab-nav-bar mat-align-tabs="center"
+animationDuration="0ms">
+  <a mat-tab-link ><strong> INno </strong></a>
+  <a mat-tab-link 
+    *ngFor="let link of links" 
+    (click)="activeLink = link" 
+    [active]="activeLink == link"
+    [routerLink]="link"> {{link}} </a>
+  <!-- <a mat-tab-link disabled>Disabled Link</a> -->
+</nav>

@@ -1,8 +1,8 @@
 #div1 {
     height:100%;
-    background-color: aqua;
+    background-color:rgb(255, 92, 92);
 }
 app-bottom-navbar{
     position:relative;
-    top:-48px;
+    top:-50px;
 }

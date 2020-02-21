@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
-
 
 @Component({
   selector: 'app-bottom-navbar',
@@ -8,10 +6,12 @@ import {DomSanitizer} from '@angular/platform-browser';
   styleUrls: ['./bottom-navbar.component.css']
 })
 export class BottomNavbarComponent implements OnInit {
-
-  constructor() { }
+  links = ['Basic', 'Schedule', 'TaskPanel','Procedure'];
+  activeLink = this.links[0];
+  constructor() { };
 
   ngOnInit() {
   }
 
 }
+

@@ -10,8 +10,12 @@ import { RouterModule } from '@angular/router';
 import { WholeLayoutComponent } from './whole-layout/whole-layout.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import { PageOneComponent } from './page-one/page-one.component';
+import { MatIconModule } from '@angular/material/icon';
+import { BasicComponent } from './Basic/Basic.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ProcedureComponent } from './procedure/procedure.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { Chart } from 'chart.js/dist/Chart.js';
 
 @NgModule({
    declarations: [
@@ -20,7 +24,8 @@ import { PageOneComponent } from './page-one/page-one.component';
       BottomNavbarComponent,
       ScheduleComponent,
       WholeLayoutComponent,
-      PageOneComponent,
+      BasicComponent,
+      ProcedureComponent,
       
    ],
    imports: [
@@ -29,14 +34,21 @@ import { PageOneComponent } from './page-one/page-one.component';
       MatGridListModule,
       MatToolbarModule,
       MatIconModule,
+      MatTabsModule,
+      BrowserAnimationsModule,
       RouterModule.forRoot([
-         { path: 'PageOne', component: PageOneComponent },
-         { path: 'WholeLayout', component: WholeLayoutComponent },
+         { path: 'Basic', component: BasicComponent , /*data: {animation: 'FilterPage'}*/},
+         { path: 'TaskPanel', component: TaskPanelComponent , /* data: {animation: 'FilterPage'}*/},
+         { path: 'Schedule', component: ScheduleComponent , /* data: {animation: 'FilterPage'}*/},
+         { path: 'Procedure', component: ProcedureComponent , /* data: {animation: 'FilterPage'}*/},
        ])
    ],
+   
    providers: [],
    bootstrap: [
       AppComponent
    ]
 })
-export class AppModule { }
+export class AppModule {
+
+ }
