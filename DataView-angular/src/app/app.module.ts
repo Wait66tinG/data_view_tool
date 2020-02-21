@@ -19,8 +19,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-
+// import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatRadioModule } from '@angular/material/radio';
+import { BasicsComponent } from './basics/basics.component'
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MindMapComponent } from './mind-map/mind-map.component';
 @NgModule({
    declarations: [
       AppComponent,
@@ -29,7 +32,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
       ScheduleComponent,
       BasicComponent,
       ProcedureComponent,
-      
+      BasicsComponent,
+      MindMapComponent,
    ],
    imports: [
       BrowserModule,
@@ -44,9 +48,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
       MatStepperModule,
       MatFormFieldModule,
       MatInputModule,
-      MatDatepickerModule,
+      MatRadioModule,
+      MatExpansionModule,
+      // MatDatepickerModule,
       RouterModule.forRoot([
-         { path: 'Basic', component: BasicComponent , /*data: {animation: 'FilterPage'}*/},
+         { path: '', component: BasicsComponent , /*data: {animation: 'FilterPage'}*/},
+         { path: 'MindMap', component: MindMapComponent , /*data: {animation: 'FilterPage'}*/},
+         { path: 'Basics', component: BasicsComponent , /*data: {animation: 'FilterPage'}*/},
          { path: 'TaskPanel', component: TaskPanelComponent , /* data: {animation: 'FilterPage'}*/},
          { path: 'Schedule', component: ScheduleComponent , /* data: {animation: 'FilterPage'}*/},
          { path: 'Procedure', component: ProcedureComponent , /* data: {animation: 'FilterPage'}*/},

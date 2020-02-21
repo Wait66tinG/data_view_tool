@@ -10,3 +10,7 @@ app-bottom-navbar{
     text-align: center;
     font-size: larger;
 }
+.example-card {
+    max-width: 400px;
+  }
+  

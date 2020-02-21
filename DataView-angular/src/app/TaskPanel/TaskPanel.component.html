@@ -1,54 +1,83 @@
 <div id="div1">
-    <mat-grid-list cols="3" rowHeight="1:1.68">
-        <mat-grid-tile colspan="2">
-            <mat-card class="example-card">
-                <mat-card-header>
-                    <!-- <div mat-card-avatar class="example-header-image"></div> -->
-                    <mat-card-title>
-                        My Task
-                    </mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <button class="TaskButton" mat-button *ngFor="let Task of Tasks">{{Task}}</button>
-                </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <mat-vertical-stepper [linear]="isLinear" #stepper>
-                <mat-step [stepControl]="firstFormGroup">
-                  <form [formGroup]="firstFormGroup">
-                    <ng-template matStepLabel>Fill out your name</ng-template>
-                    <mat-form-field>
-                      <!-- <mat-label>Name</mat-label> -->
-                      <input matInput placeholder="First Task" formControlName="firstCtrl" required>
-                    </mat-form-field>
-                    <div>
-                      <button mat-button matStepperNext>Next</button>
-                    </div>
-                  </form>
-                </mat-step>
-                <mat-step [stepControl]="secondFormGroup">
-                  <form [formGroup]="secondFormGroup">
-                    <ng-template matStepLabel>Fill out your address</ng-template>
-                    <mat-form-field>
-                        <!-- <mat-label>Name</mat-label> -->
-                        <input matInput placeholder="Second Task" formControlName="firstCtrl" required>
-                      </mat-form-field>
-                    <div>
-                      <button mat-button matStepperPrevious>Back</button>
-                      <button mat-button matStepperNext>Next</button>
-                    </div>
-                  </form>
-                </mat-step>
-                <mat-step>
-                  <ng-template matStepLabel>Done</ng-template>
-                  <p>You are now done.</p>
-                  <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
-                  </div>
-                </mat-step>
-              </mat-vertical-stepper>
-        </mat-grid-tile>
-    </mat-grid-list>
+  <mat-grid-list cols="3" rowHeight="1:1.68">
+    <mat-grid-tile colspan="2">
+      <mat-card class="example-card">
+        <mat-card-header>
+          <!-- <div mat-card-avatar class="example-header-image"></div> -->
+          <mat-card-title>
+            My Task
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <button class="TaskButton" mat-button *ngFor="let Task of Tasks">{{Task}}</button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Personal data
+            </mat-panel-title>
+            <mat-panel-description>
+              Type your name and age
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field>
+            <mat-label>First name</mat-label>
+            <input matInput>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Age</mat-label>
+            <input matInput type="number" min="1">
+          </mat-form-field>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Personal data
+            </mat-panel-title>
+            <mat-panel-description>
+              Type your name and age
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field>
+            <mat-label>First name</mat-label>
+            <input matInput>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Age</mat-label>
+            <input matInput type="number" min="1">
+          </mat-form-field>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Personal data
+            </mat-panel-title>
+            <mat-panel-description>
+              Type your name and age
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field>
+            <mat-label>First name</mat-label>
+            <input matInput>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Age</mat-label>
+            <input matInput type="number" min="1">
+          </mat-form-field>
+        </mat-expansion-panel>
+
+      </mat-accordion>
+
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

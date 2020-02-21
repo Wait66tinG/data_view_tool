@@ -23,11 +23,6 @@ export class ScheduleComponent implements OnInit {
   constructor() {
 
   }
-
-  onClickMe() {
-
-
-  }
   ngOnInit() {
 
 

@@ -2,3 +2,15 @@
     height:100%;
     background-color:rgb(93, 255, 72);
 }
+.mat-stepper-vertical {
+    width: 90%;
+    height: 87%;
+    background-color: rgb(93, 255, 72);
+    margin-top: 10%;
+    margin-bottom:10%;
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+  

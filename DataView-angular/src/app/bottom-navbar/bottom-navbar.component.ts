@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bottom-navbar.component.css']
 })
 export class BottomNavbarComponent implements OnInit {
-  links = ['Basic', 'Schedule', 'TaskPanel','Procedure'];
+  links = ['Basics', 'Schedule', 'TaskPanel','Procedure','MindMap'];
   activeLink = this.links[0];
   constructor() { };
 
@@ -14,4 +14,3 @@ export class BottomNavbarComponent implements OnInit {
   }
 
 }
-
