@@ -1,0 +1,5 @@
+#testDiv{  width: 200px;  
+  height: auto;  
+  word-wrap:break-word;  
+  word-break:break-all;  
+  overflow: hidden;  }

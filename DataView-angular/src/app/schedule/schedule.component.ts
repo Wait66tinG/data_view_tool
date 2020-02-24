@@ -7,6 +7,8 @@ import *as Chart from 'chart.js';
 })
 
 export class ScheduleComponent implements OnInit {
+  minDate: Date;
+  maxDate: Date;
 
   @ViewChild('canvas1')
   public canvas1Ref: ElementRef;
@@ -21,7 +23,9 @@ export class ScheduleComponent implements OnInit {
   public canvas4Ref: ElementRef;
   canvas4: any;
   constructor() {
-
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date(currentYear - 20, 0, 1);
+    this.maxDate = new Date(currentYear + 1, 11, 31);
   }
   ngOnInit() {
 
@@ -155,3 +159,4 @@ export class ScheduleComponent implements OnInit {
 
 
 }
+

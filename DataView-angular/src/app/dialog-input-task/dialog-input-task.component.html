@@ -1,0 +1,22 @@
+<mat-dialog-content class="mat-typography" align="center">
+    <h2 class="dialogbox">Write Down Your First Task</h2>
+    <mat-form-field class="inputbox">
+        <mat-label>Taskname</mat-label>
+        <input matInput placeholder="Ex. Finish homework" #newTask
+        (keyup.enter)="addTask(newTask.value , newTaskDetail.value)"
+        >
+        <!-- (blur)="addTask(newTask.value , newTaskDetail.value)" -->
+      </mat-form-field>
+    <mat-form-field class="inputbox">
+        <mat-label>Autosize textarea</mat-label>
+        <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5" #newTaskDetail
+            (keyup.enter)="addTask(newTask.value , newTaskDetail.value)"
+           ></textarea>
+           <!-- (blur)="addTask(newTask.value , newTaskDetail.value)" -->
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions id="textbox" align="center">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="addTask(newTask.value , newTaskDetail.value)">Install</button>
+</mat-dialog-actions>

@@ -1,5 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, Inject } from '@angular/core';
+import { Task } from '../TASK';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogInputTaskComponent } from '../dialog-input-task/dialog-input-task.component';
+// import { TASKS } from '../mock-heroes';
+import { TaskService } from '../task.service';
+// import { MessageService } from '../message.service';
+export interface DialogData {
+  id: number;
+  taskname: string;
+  taskdetail: string;
+}
 
 @Component({
   selector: 'app-TaskPanel',
@@ -7,12 +17,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./TaskPanel.component.css']
 })
 export class TaskPanelComponent implements OnInit {
-  Tasks = ['Task1', 'Task1', 'Task1','Task1','Task1','Task1','Task1','Task1','Task1','Task1'];
-  panelOpenState = false;
-  constructor() { }
+  tasks: Task[];
+  id: number;
+  taskname: string;
+  taskdetail: string;
+  states = "lock";
 
+  panelOpenState = false;
+  constructor(public dialog: MatDialog, private taskService: TaskService) { }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogInputTaskComponent, {
+      width: '350px',
+      height: '320px',
+      data: { id: this.id, taskname: this.taskname, taskdetail: this.taskdetail }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.id = result;
+    });
+  }
   ngOnInit() {
+    this.getTasks()
+  }
+  getTasks(): void {
+    this.tasks = this.taskService.getTasks();
+  }
+  changeIcon() {
+    if (this.states === "lock") {
+      this.states = "lock_open";
+    }
+    else{
+      this.states = "lock";
+    }
   }
 
-}
 
+}
