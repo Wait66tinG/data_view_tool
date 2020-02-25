@@ -34,6 +34,9 @@ export class MindMapComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  click(){
+    console.log(localStorage.id,localStorage.taskname)
+  }
 
 }
 

@@ -2,12 +2,12 @@ import { Component, OnInit, Inject, NgZone, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { take } from 'rxjs/operators';
-import { TASKS } from '../mock-heroes'
+// import { TASKS } from '../mock-heroes'
 import { Task } from '../TASK';
 export interface DialogData {
-  id: number;
-  taskname: string;
-  taskdetail: string;
+  // id: number;
+  // taskname: string;
+  // taskdetail: string;
 }
 @Component({
   selector: 'app-dialog-input-task',
@@ -16,10 +16,11 @@ export interface DialogData {
 })
 
 export class DialogInputTaskComponent implements OnInit {
-  tasks = TASKS;
-  id = this.tasks.length;
+  // tasks = TASKS;
+  // id = this.tasks.length;
   newTask1 :Task;
-  id1 :[];
+  storage=localStorage;
+
   constructor(
     private _ngZone: NgZone,
     public dialogRef: MatDialogRef<DialogInputTaskComponent>,
@@ -39,7 +40,8 @@ export class DialogInputTaskComponent implements OnInit {
   }
 
   addTask(newTask: string , newTaskDetail: string) {
-    this.newTask1 = {id:this.id,taskname:newTask,taskdetail:''};
-    this.tasks.push(this.newTask1);
+    // this.newTask1 = {id:this.id,taskname:newTask,taskdetail:''};
+    // this.tasks.push(this.newTask1);
+    console.log(this.storage);
   }
 }

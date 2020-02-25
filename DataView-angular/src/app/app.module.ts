@@ -10,7 +10,6 @@ import { BasicComponent } from './Basic/Basic.component';
 import { ProcedureComponent } from './procedure/procedure.component';
 import { BasicsComponent } from './basics/basics.component'
 
-
 import { MatCardModule } from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -33,6 +32,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogInputTaskComponent } from './dialog-input-task/dialog-input-task.component';
 import { TextFieldModule } from '@angular/cdk/text-field';
+import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
    declarations: [
@@ -45,6 +48,7 @@ import { TextFieldModule } from '@angular/cdk/text-field';
       BasicsComponent,
       MindMapComponent,
       DialogInputTaskComponent,
+      MessagesComponent,
    ],
    imports: [
       BrowserModule,
@@ -68,8 +72,20 @@ import { TextFieldModule } from '@angular/cdk/text-field';
       ReactiveFormsModule,
       MatDialogModule,
       TextFieldModule,
+      HttpClientModule,
       // MatPaginator,
       // MatTableDataSource,
+      HttpClientModule,
+      HttpClientModule,
+
+      // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+      // and returns simulated server responses.
+      // Remove it when a real server is ready to receive requests.
+      HttpClientInMemoryWebApiModule.forRoot(
+        InMemoryDataService, { dataEncapsulation: false }
+      ),
+
+
       RouterModule.forRoot([
          { path: '', component: BasicsComponent, /*data: {animation: 'FilterPage'}*/ },
          { path: 'MindMap', component: MindMapComponent, /*data: {animation: 'FilterPage'}*/ },
@@ -78,6 +94,7 @@ import { TextFieldModule } from '@angular/cdk/text-field';
          { path: 'Schedule', component: ScheduleComponent, /* data: {animation: 'FilterPage'}*/ },
          { path: 'Procedure', component: ProcedureComponent, /* data: {animation: 'FilterPage'}*/ },
       ])
+      
    ],
 
    providers: [],
