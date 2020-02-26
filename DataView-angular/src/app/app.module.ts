@@ -36,6 +36,7 @@ import { HttpClientModule }    from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { MessagesComponent } from './messages/messages.component';
+import { TaskEditComponent } from './task-edit/task-edit.component';
 
 @NgModule({
    declarations: [
@@ -49,6 +50,7 @@ import { MessagesComponent } from './messages/messages.component';
       MindMapComponent,
       DialogInputTaskComponent,
       MessagesComponent,
+      TaskEditComponent,
    ],
    imports: [
       BrowserModule,

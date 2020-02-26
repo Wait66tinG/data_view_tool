@@ -46,6 +46,16 @@ export class TaskService {
   private log(message: string) {
     this.messageService.add(`TaskService: ${message}`);
   }
+  /** PUT: update the hero on the server */
+  updateHero(task: Task): Observable<any> {
+    return this.http.put(this.tasksUrl, task, this.httpOptions).pipe(
+      tap(_ => this.log(`updated hero id=${task.id}`)),
+      catchError(this.handleError<any>('updateTask'))
+    );
+  }
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
 }
 

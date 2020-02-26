@@ -1,5 +1,5 @@
 #div1 {
-  height: 82%;
+  height: 90%;
   width: 100%;
   padding-top: 5%;
   padding-bottom: 5%;
@@ -42,3 +42,8 @@ mat-card-content {
 .example-spacer {
   flex: 1 1 auto;
 }
+
+mat-grid-tile {
+  background: lightblue;
+}
+

@@ -19,7 +19,6 @@ export class DialogInputTaskComponent implements OnInit {
   // tasks = TASKS;
   // id = this.tasks.length;
   newTask1 :Task;
-  storage=localStorage;
 
   constructor(
     private _ngZone: NgZone,
@@ -42,6 +41,5 @@ export class DialogInputTaskComponent implements OnInit {
   addTask(newTask: string , newTaskDetail: string) {
     // this.newTask1 = {id:this.id,taskname:newTask,taskdetail:''};
     // this.tasks.push(this.newTask1);
-    console.log(this.storage);
   }
 }

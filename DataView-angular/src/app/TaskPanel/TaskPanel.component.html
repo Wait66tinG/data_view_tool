@@ -1,28 +1,36 @@
-<div id="div1">
-  <mat-card class="example-card">
-    <mat-toolbar color="primary">
-      <mat-toolbar-row>
-        <span>My Task</span>
-        <span class="example-spacer"></span>
-        <button mat-raised-button id="editButton">
-          <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon"
-            (click)="changeIcon()">{{states}}
-          </mat-icon>
-        </button>
-      </mat-toolbar-row>
-    </mat-toolbar>
+<!-- <mat-grid-list cols="4" rows="1" rowHeight="" style="background-color: blueviolet;">
 
-    <mat-card-content align="center">
-      <button *ngFor="let task of tasks" class="TaskButton" mat-raised-button (click)="openDialog()" class="TaskButton"
-        mat-button>
-        <p>{{task.taskname}}</p>
-      </button>
-      <button class="TaskButton" mat-raised-button (click)="openDialog()" class="TaskButton" mat-button>
-        <p>PLUS</p>
-      </button>
-    </mat-card-content>
-    <mat-card-footer>
+</mat-grid-list> -->
 
-    </mat-card-footer>
-  </mat-card>
-</div>
+<mat-grid-list cols="4" rowHeight="9:20">
+  <mat-grid-tile colspan="3">
+    <div id="div1">
+      <mat-card class="example-card">
+        <mat-toolbar color="primary">
+          <mat-toolbar-row>
+            <span>My Task</span>
+            <span class="example-spacer"></span>
+            <button mat-raised-button id="editButton">
+              <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon"
+                (click)="changeIcon()">{{states}}
+              </mat-icon>
+            </button>
+          </mat-toolbar-row>
+        </mat-toolbar>
+
+        <mat-card-content align="center">
+          <button *ngFor="let task of tasks"  class="TaskButton"
+            mat-raised-button (click)="openDialog(task)" class="TaskButton" mat-button>
+            <p>{{task.taskname}}</p>
+          </button>
+          <!-- <button class="TaskButton" mat-raised-button (click)="openDialog(task)" class="TaskButton" mat-button>
+            <p>PLUS</p>
+          </button> -->
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <app-task-edit [task]="selectedTask"></app-task-edit>
+  </mat-grid-tile>
+</mat-grid-list>

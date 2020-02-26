@@ -25,35 +25,40 @@ export class TaskPanelComponent implements OnInit {
 
   panelOpenState = false;
   constructor(
-    public dialog: MatDialog,  
-    private taskService: TaskService,) { }
+    public dialog: MatDialog,
+    private taskService: TaskService, ) { }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogInputTaskComponent, {
-      width: '350px',
-      height: '320px',
-      // data: { id: this.id, taskname: this.taskname, taskdetail: this.taskdetail }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.id = result;
-    });
+  selectedTask: Task;
+  // onSelect(task: Task): void {
+  //   this.selectedTask = task;
+  // }
+  openDialog(task: Task): void {
+    // const dialogRef = this.dialog.open(DialogInputTaskComponent, {
+    //   width: '350px',
+    //   height: '320px',
+    //   // data: { id: this.id, taskname: this.taskname, taskdetail: this.taskdetail }
+    // });
+    
+    this.selectedTask = task;
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log('The dialog was closed');
+    //   // this.id = result;
+    // });
   }
   ngOnInit() {
-    this.getTasks ()
+    this.getTasks()
   }
 
   getTasks(): void {
     this.taskService.getTasks()
-        .subscribe(heroes => this.tasks = heroes);
+      .subscribe(heroes => this.tasks = heroes);
   }
 
   changeIcon() {
     if (this.states === "lock") {
       this.states = "lock_open";
     }
-    else{
+    else {
       this.states = "lock";
     }
   }
