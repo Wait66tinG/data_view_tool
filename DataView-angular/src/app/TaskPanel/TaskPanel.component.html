@@ -10,22 +10,19 @@
           <mat-toolbar-row>
             <span>My Task</span>
             <span class="example-spacer"></span>
-            <button mat-raised-button id="editButton">
+            <button mat-raised-button id="editButton" (click)="changeIcon()">
               <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon"
-                (click)="changeIcon()">{{states}}
+                >{{states}}
               </mat-icon>
             </button>
           </mat-toolbar-row>
         </mat-toolbar>
 
         <mat-card-content align="center">
-          <button *ngFor="let task of tasks"  class="TaskButton"
-            mat-raised-button (click)="openDialog(task)" class="TaskButton" mat-button>
+          <button *ngFor="let task of tasks" class="TaskButton" mat-raised-button (click)="select(task)"
+            class="TaskButton" mat-button>
             <p>{{task.taskname}}</p>
           </button>
-          <!-- <button class="TaskButton" mat-raised-button (click)="openDialog(task)" class="TaskButton" mat-button>
-            <p>PLUS</p>
-          </button> -->
         </mat-card-content>
       </mat-card>
     </div>

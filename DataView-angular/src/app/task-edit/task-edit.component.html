@@ -3,11 +3,10 @@
     <div>
         <mat-form-field class="inputbox">
             <mat-label>Taskname</mat-label>
-            <input matInput placeholder={{task.taskname}} #newTask
-            (keyup.enter)="addTask(newTask.value)"
-            >
+            <input matInput placeholder={{task.taskname}} 
+            #newTask (keyup.enter)="save()">
             <!-- (blur)="addTask(newTask.value , newTaskDetail.value)" -->
-          </mat-form-field>
+        </mat-form-field>
         <!-- <label>name:
             <input matInput placeholder={{task.taskname}} #newTask
         (keyup.enter)="addTask(newTask.value)"
@@ -16,4 +15,17 @@
         </label> -->
     </div>
     <button mat-button (click)="save()">Save</button>
+    <button mat-button (click)="delete()">Delete</button>
+</div>
+<div *ngIf="task==null">
+    <h2>Write Down New Task</h2>
+    <div>
+        <mat-form-field class="inputbox">
+            <mat-label>Taskname</mat-label>
+            <input matInput 
+            #newTask (keyup.enter)="add(newTask.value)">
+
+        </mat-form-field>
+    </div>
+    <button mat-button (click)="add(newTask.value)">Add</button>
 </div>

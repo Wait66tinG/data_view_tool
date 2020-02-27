@@ -2,14 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { Task } from '../TASK';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogInputTaskComponent } from '../dialog-input-task/dialog-input-task.component';
-// import { TASKS } from '../mock-heroes';
 import { Observable, of } from 'rxjs';
 import { TaskService } from '../task.service';
-export interface DialogData {
-  // id: number;
-  // taskname: string;
-  // taskdetail: string;
-}
+import { TaskEditComponent } from '../task-edit/task-edit.component';
+
 
 @Component({
   selector: 'app-TaskPanel',
@@ -18,40 +14,31 @@ export interface DialogData {
 })
 export class TaskPanelComponent implements OnInit {
   tasks: Task[];
-  // id: number;
-  // taskname: string;
-  // taskdetail: string;
+  
   states = "lock";
 
-  panelOpenState = false;
   constructor(
-    public dialog: MatDialog,
-    private taskService: TaskService, ) { }
+    private taskService: TaskService, 
+    ) { 
+      this.getTasks()
+    }
 
   selectedTask: Task;
-  // onSelect(task: Task): void {
-  //   this.selectedTask = task;
-  // }
-  openDialog(task: Task): void {
-    // const dialogRef = this.dialog.open(DialogInputTaskComponent, {
-    //   width: '350px',
-    //   height: '320px',
-    //   // data: { id: this.id, taskname: this.taskname, taskdetail: this.taskdetail }
-    // });
-    
+
+  select(task: Task): void {
     this.selectedTask = task;
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   // this.id = result;
-    // });
+    var select = task.taskname
+    if (select=="PLUS") {
+      this.add();
+      this.selectedTask = null;
+    }
   }
   ngOnInit() {
-    this.getTasks()
   }
 
   getTasks(): void {
     this.taskService.getTasks()
-      .subscribe(heroes => this.tasks = heroes);
+      .subscribe(tasks => this.tasks = tasks);
   }
 
   changeIcon() {
@@ -61,6 +48,15 @@ export class TaskPanelComponent implements OnInit {
     else {
       this.states = "lock";
     }
+  }
+  
+  add(): void {
+    // this.taskService.addTask()
+    // .subscribe(tasks => this.tasks = tasks);
+      // .subscribe(task => {
+      //   this.tasks.push(task);
+      // });
+      // console.log(123)
   }
 
 
