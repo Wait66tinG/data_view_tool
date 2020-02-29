@@ -14,25 +14,31 @@ import { TaskEditComponent } from '../task-edit/task-edit.component';
 })
 export class TaskPanelComponent implements OnInit {
   tasks: Task[];
-  
+
   states = "lock";
 
-  constructor(
-    private taskService: TaskService, 
-    ) { 
-      this.getTasks()
-    }
-
   selectedTask: Task;
+  constructor(
+    private taskService: TaskService,
+  ) {
+    this.getTasks()
+  }
+
+
 
   select(task: Task): void {
     this.selectedTask = task;
     var select = task.taskname
-    if (select=="PLUS") {
-      this.add();
+    if (select == "PLUS") {
       this.selectedTask = null;
     }
+    // else{
+    //   this.taskService.selectedTask(task)
+    //   .subscribe(task1 => this.selectedTask = task);
+    //   this.selectedTask = task1;
+    // }
   }
+
   ngOnInit() {
   }
 
@@ -49,14 +55,14 @@ export class TaskPanelComponent implements OnInit {
       this.states = "lock";
     }
   }
-  
+
   add(): void {
     // this.taskService.addTask()
     // .subscribe(tasks => this.tasks = tasks);
-      // .subscribe(task => {
-      //   this.tasks.push(task);
-      // });
-      // console.log(123)
+    // .subscribe(task => {
+    //   this.tasks.push(task);
+    // });
+    // console.log(123)
   }
 
 

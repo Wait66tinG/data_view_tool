@@ -1,10 +1,9 @@
-<div *ngIf="task">
+<div *ngIf="task" class="contianer" align="top">
     <h2>{{task.taskname}}</h2>
     <div>
         <mat-form-field class="inputbox">
-            <mat-label>Taskname</mat-label>
-            <input matInput placeholder={{task.taskname}} 
-            #newTask (keyup.enter)="save()">
+            <mat-label>TaskName</mat-label>
+            <input matInput placeholder="{{task.taskname}}" #newTask (keyup.enter)="save(newTask.value)">
             <!-- (blur)="addTask(newTask.value , newTaskDetail.value)" -->
         </mat-form-field>
         <!-- <label>name:
@@ -14,7 +13,7 @@
             <input [(ngModel)]="task.taskname" placeholder="name" />
         </label> -->
     </div>
-    <button mat-button (click)="save()">Save</button>
+    <button mat-button (click)="save(newTask.value)">Save</button>
     <button mat-button (click)="delete()">Delete</button>
 </div>
 <div *ngIf="task==null">
@@ -22,9 +21,13 @@
     <div>
         <mat-form-field class="inputbox">
             <mat-label>Taskname</mat-label>
-            <input matInput 
-            #newTask (keyup.enter)="add(newTask.value)">
-
+            <!-- <input matInput 
+            #newTask (keyup.enter)="add(newTask.value)"> -->
+            <!-- <input #newTask matInput placeholder="" [formControl]="emailFormControl"> -->
+            <input #newTask matInput placeholder="" [formControl]="taskFormControl" (keyup.enter)="add(newTask.value)">
+            <mat-error *ngIf="taskFormControl.hasError('required')">
+                Value is <strong>required</strong>
+            </mat-error>
         </mat-form-field>
     </div>
     <button mat-button (click)="add(newTask.value)">Add</button>

@@ -3,7 +3,7 @@ import { Task } from './TASK';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap, last } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,9 +11,14 @@ export class TaskService {
 
   createDb() {
     const TASKS = [
-      { id: 1, taskname: 'Dr Nice' },
-      { id: 2, taskname: 'Narco' },
-      { id: 3, taskname: 'PLUS' },
+      { id: 0, taskname: '0' },
+      { id: 1, taskname: '1' },
+      { id: 2, taskname: '2' },
+      { id: 3, taskname: '3' },
+      { id: 4, taskname: '4' },
+      { id: 5, taskname: '5' },
+      { id: 6, taskname: '6' },
+      { id: 7, taskname: 'PLUS' },
 
     ];
     // localStorage.setItem('tasks', JSON.stringify(TASKS));
@@ -35,28 +40,72 @@ export class TaskService {
     return of(this.lastname)
   }
 
-  addTask(task: Task): Observable<Task> {
+  addTask(task: Task): Observable<Task[]> {
     this.lastname.pop();
-    this.lastname.push(task, { id: this.lastname.length + 2, taskname: "PLUS" })
+    this.lastname.push(task, { id: this.lastname.length + 1, taskname: "PLUS" })
+    // this.lastname.splice(this.lastname.length - 1, 0, task)
     localStorage.setItem('tasks', JSON.stringify(this.lastname));
-    return of(task)
+    return of(this.lastname)
   }
 
   deleteTask(task: Task): Observable<Task[]> {
     for (var i = 0; i < this.lastname.length; i++) {
-      if (this.lastname[i].id == task.id) {
+      if (this.lastname[i].id == task.id && this.lastname[i].taskname == task.taskname) {
         this.lastname.splice(i, 1)
+        console.log("delete index =", i)
+        var index = i;
+        // localStorage.setItem('tasks', JSON.stringify(this.lastname));
+      }
+    }
+    for (let j = index; j < this.lastname.length; j++) {
+      // console.log("j value=", j)
+      this.lastname[j].id -= 1
+    }
+    localStorage.setItem('tasks', JSON.stringify(this.lastname));
+    return of(this.lastname)
+  }
+
+  saveTask(task1: Task, task2: Task): Observable<Task[]> {
+    for (var i = 0; i < this.lastname.length; i++) {
+      if (this.lastname[i].id == task2.id && this.lastname[i].taskname == task2.taskname) {
+        this.lastname.splice(i, 1, task1)
+        // console.log("delete index =", i)
+        // var index = i;
         localStorage.setItem('tasks', JSON.stringify(this.lastname));
       }
     }
-    for (let index = 0; index < this.lastname.length; index++) {
-      if (this.lastname[index].id >= i) {
-        this.lastname[index].id -= 1
-      }
-      localStorage.setItem('tasks', JSON.stringify(this.lastname));
-    }
     return of(this.lastname)
   }
+
+  selectedTask(task:Task , inputindex:number): Observable<Task>{
+    var states:Number = 0
+    var index :number
+    for (var i = 0; i < this.lastname.length; i++) {
+      if (this.lastname[i].id == task.id && this.lastname[i].taskname == task.taskname) {
+        states = 1;
+        index = i;
+        // console.log("inif=", i)
+        break
+      }
+    }
+    if (states==1) {
+      task = task
+    }
+    else{
+      task = this.lastname[inputindex]
+    }
+        // console.log("index number=", states , inputindex)
+    return of(task)
+  }
+  // updateTask(task: Task): Observable<Task[]> {
+  //   for (var i = 0; i < this.lastname.length; i++) {
+  //     if (this.lastname[i].id == task.id && this.lastname[i].taskname == task.taskname) {
+  //       this.lastname.splice(i, 1)
+  //       localStorage.setItem('tasks', JSON.stringify(this.lastname));
+  //     }
+  //   }
+  // }
+
   // getTask(id: number): Observable<Task> {
   //   const url = `${this.tasksUrl}/${id}`;
   //   return this.http.get<Task>(url).pipe(
