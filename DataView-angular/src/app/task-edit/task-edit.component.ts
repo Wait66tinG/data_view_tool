@@ -14,14 +14,14 @@ export class TaskEditComponent implements OnInit {
   @Input()
 
   task: Task;
-  lock:string;
+  lock: string;
   newTask1: Task;
   tasks: Task[];
   lastname: Task[] = JSON.parse(localStorage.getItem('tasks'));
   static IsAddTure: any;
   constructor(
     private taskService: TaskService,
-  ) { 
+  ) {
     // this.select()
   }
 
@@ -48,15 +48,15 @@ export class TaskEditComponent implements OnInit {
         this.lastname = task;
         // console.log("delete", task)
       });
-      this.select()
-      if (this.task.taskname=="PLUS") {
-        this.task =null
-      }
+    this.select()
+    if (this.task.taskname == "PLUS") {
+      this.task = null
+    }
   }
 
   select() {
     // console.log("select task" ,this.task)
-    this.taskService.selectedTask(this.task , this.task.id)
+    this.taskService.selectedTask(this.task, this.task.id)
       .subscribe(task1 => this.task = task1);
   }
 

@@ -25,12 +25,17 @@
 }
 
 .example-container {
-  height: 100%;
+  height: 20rem;
   overflow: auto;
   width:100%;
 }
 table{
   width:100%;
+}
+
+.jumbotron{
+  padding-top: 2rem;
+  height: 9rem;
 }
 
 

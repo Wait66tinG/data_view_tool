@@ -78,7 +78,6 @@ import { TaskEditComponent } from './task-edit/task-edit.component';
       // MatPaginator,
       // MatTableDataSource,
       HttpClientModule,
-      HttpClientModule,
 
       // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
       // and returns simulated server responses.

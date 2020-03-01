@@ -38,20 +38,33 @@ export class BasicsComponent implements OnInit {
   canvas1: any;
   constructor(private taskService: TaskService, ) {
     this.getTasks()
+    this.showTaskChange()
   }
 
   ngOnInit(): void {
-
   }
+
   showTaskChange() {
-
+    // this.showtasks = this.tasks.slice(0, this.tasks.length - 1);
+    // if (this.showtasks[0].id == 0) {
+    //   for (let i = 0; i < this.showtasks.length; i++) {
+    //     this.showtasks[i].id += 1
+    //   }
+    // }
+    this.showtasks = this.tasks.slice(0, this.tasks.length - 1);
+    // for (let i = 0; i < this.showtasks.length; i++) {
+    //       this.showtasks[i].id =this.showtasks.length
+    //     }
+    console.log("tasks",this.tasks)
+    console.log("showtasks",this.showtasks)
   }
+
   getTasks(): void {
     this.taskService.getTasks()
       .subscribe(tasks => this.tasks = tasks);
-    console.log(this.tasks.length, this.tasks)
-    this.showtasks = this.tasks.slice(0,this.tasks.length-1);
+    // console.log(this.tasks.length, this.tasks)
   }
+
   ngAfterViewInit(): void {
     this.canvas1 = this.canvas1Ref.nativeElement;
     var ctx = this.canvas1Ref.nativeElement.getContext('2d');

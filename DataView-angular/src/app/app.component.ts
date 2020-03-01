@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'DataView-angular';
+  winHeight: string = window.innerHeight +"px";
+  ngOnInit(): void {
+    console.log(this.winHeight)
+  }
 }

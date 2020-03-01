@@ -17,8 +17,7 @@ export class TaskService {
       { id: 3, taskname: '3' },
       { id: 4, taskname: '4' },
       { id: 5, taskname: '5' },
-      { id: 6, taskname: '6' },
-      { id: 7, taskname: 'PLUS' },
+      { id: 6, taskname: 'PLUS' },
 
     ];
     // localStorage.setItem('tasks', JSON.stringify(TASKS));
@@ -52,13 +51,13 @@ export class TaskService {
     for (var i = 0; i < this.lastname.length; i++) {
       if (this.lastname[i].id == task.id && this.lastname[i].taskname == task.taskname) {
         this.lastname.splice(i, 1)
-        console.log("delete index =", i)
+        // console.log("delete index =", i)
         var index = i;
         // localStorage.setItem('tasks', JSON.stringify(this.lastname));
       }
     }
     for (let j = index; j < this.lastname.length; j++) {
-      // console.log("j value=", j)
+      console.log("j value=", j)
       this.lastname[j].id -= 1
     }
     localStorage.setItem('tasks', JSON.stringify(this.lastname));
