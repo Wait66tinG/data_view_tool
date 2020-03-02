@@ -28,18 +28,14 @@ export class TaskPanelComponent implements OnInit {
 
   select(task: Task): void {
     this.selectedTask = task;
-    var select = task.taskname
+    var select = task.taskName
     if (select == "PLUS") {
       this.selectedTask = null;
     }
-    // else{
-    //   this.taskService.selectedTask(task)
-    //   .subscribe(task1 => this.selectedTask = task);
-    //   this.selectedTask = task1;
-    // }
   }
 
   ngOnInit() {
+    this.getHeight()
   }
 
   getTasks(): void {
@@ -54,17 +50,13 @@ export class TaskPanelComponent implements OnInit {
     else {
       this.states = "lock";
     }
+
   }
-
-  add(): void {
-    // this.taskService.addTask()
-    // .subscribe(tasks => this.tasks = tasks);
-    // .subscribe(task => {
-    //   this.tasks.push(task);
-    // });
-    // console.log(123)
+  winHeight: number
+  getHeight() {
+    this.winHeight = window.innerHeight
+    this.taskService.getHeight(this.winHeight)
+      .subscribe(winHeight => this.winHeight = winHeight);
+    // console.log("function", this.winHeight)
   }
-
-
-
 }

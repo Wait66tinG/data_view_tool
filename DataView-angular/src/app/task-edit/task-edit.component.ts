@@ -31,7 +31,7 @@ export class TaskEditComponent implements OnInit {
 
   add(newTask: string): void {
     if (newTask !== "" && newTask !== "PLUS") {
-      this.newTask1 = { id: this.lastname.length - 1, taskname: newTask }
+      this.newTask1 = { id: this.lastname.length - 1, taskName: newTask }
       this.taskService.addTask(this.newTask1)
         .subscribe(task => {
           this.lastname = task;
@@ -49,7 +49,7 @@ export class TaskEditComponent implements OnInit {
         // console.log("delete", task)
       });
     this.select()
-    if (this.task.taskname == "PLUS") {
+    if (this.task.taskName == "PLUS") {
       this.task = null
     }
   }
@@ -62,7 +62,7 @@ export class TaskEditComponent implements OnInit {
 
   save(newTask: string): void {
     if (newTask !== "" && newTask !== "PLUS") {
-      this.newTask1 = { id: this.task.id, taskname: newTask }
+      this.newTask1 = { id: this.task.id, taskName: newTask }
       this.taskService.saveTask(this.newTask1, this.task)
         .subscribe(task => {
           this.lastname = task;

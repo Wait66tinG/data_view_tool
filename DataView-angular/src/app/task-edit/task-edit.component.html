@@ -1,9 +1,9 @@
 <div *ngIf="task" class="contianer" align="top">
-    <h2>{{task.taskname}}</h2>
+    <h2>{{task.taskName}}</h2>
     <div>
         <mat-form-field class="inputbox">
             <mat-label>TaskName</mat-label>
-            <input matInput placeholder="{{task.taskname}}" #newTask (keyup.enter)="save(newTask.value)">
+            <input matInput placeholder="{{task.taskName}}" #newTask (keyup.enter)="save(newTask.value)">
             <!-- (blur)="addTask(newTask.value , newTaskDetail.value)" -->
         </mat-form-field>
         <!-- <label>name:

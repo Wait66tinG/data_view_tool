@@ -1,8 +1,4 @@
-<!-- <mat-grid-list cols="4" rows="1" rowHeight="" style="background-color: blueviolet;">
-
-</mat-grid-list> -->
-
-<mat-grid-list cols="4" rowHeight="9:20">
+<!-- <mat-grid-list cols="4" rowHeight="9:20">
   <mat-grid-tile colspan="3">
     <div id="div1">
       <mat-card class="example-card">
@@ -21,7 +17,7 @@
         <mat-card-content align="center">
           <button *ngFor="let task of tasks" class="TaskButton" mat-raised-button (click)="select(task)"
             class="TaskButton" mat-button>
-            <p>{{task.taskname}}</p>
+            <p>{{task.taskName}}</p>
           </button>
         </mat-card-content>
       </mat-card>
@@ -30,4 +26,49 @@
   <mat-grid-tile>
     <app-task-edit [task]="selectedTask" ></app-task-edit>
   </mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
+<div class="container">
+  <div class="row" [style.height]=" winHeight +'rem'">
+    <div class="col align-self-center">
+      <mat-card class="example-card" [style.height]=" winHeight*0.9 +'rem'">
+        <!-- <mat-toolbar color="primary">
+          <mat-toolbar-row>
+            <span>My Task</span>
+            <span class="example-spacer"></span>
+            <button mat-raised-button id="editButton" (click)="changeIcon()">
+              <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">{{states}}
+              </mat-icon>
+            </button>
+          </mat-toolbar-row>
+        </mat-toolbar> -->
+
+
+        <nav>
+          <div class="nav nav-tabs " id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+              aria-controls="nav-home" aria-selected="true" style="font-size:2rem">Home</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+              aria-controls="nav-profile" aria-selected="false">Profile</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+              aria-controls="nav-contact" aria-selected="false">Contact</a>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <mat-card-content align="center" style="padding-top: 1rem;">
+              <button *ngFor="let task of tasks" class="TaskButton" mat-raised-button (click)="select(task)"
+                class="TaskButton" mat-button>
+                <p>{{task.taskName}}</p>
+              </button>
+            </mat-card-content>
+          </div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">2</div>
+          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">3</div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-2">
+      <app-task-edit [task]="selectedTask"></app-task-edit>
+    </div>
+  </div>
+</div>

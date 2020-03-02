@@ -6,9 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'DataView-angular';
-  winHeight: string = window.innerHeight +"px";
-  ngOnInit(): void {
-    console.log(this.winHeight)
+  title = 'INnoVation';
+  constructor(
+  ) {
+    // this.getHeight()
   }
+  ngOnInit(): void {
+    // console.log(this.winHeight)
+    
+  }
+  // getHeight(){
+  //   this.winHeight = window.innerHeight + "px";
+  // }
 }

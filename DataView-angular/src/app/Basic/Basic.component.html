@@ -1,4 +1,4 @@
-<div id="div1" [@routeAnimations]="prepareRoute(outlet)">
+<div id="div1" [@routeAnimations]="prepareRoute(outlet)" [style.height]="winHeight+'rem'" style="overflow: auto;">
     <router-outlet #outlet="outlet"></router-outlet>
+    <app-bottom-navbar></app-bottom-navbar>
 </div>
-<app-bottom-navbar></app-bottom-navbar>

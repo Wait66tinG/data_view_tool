@@ -1,4 +1,8 @@
 export interface Task {
     id: number;
-    taskname: string;
+    taskName: string;
+    // taskDetial:string;
+    // taskStartDate:Date;
+    // taskFinishDate:Date;
+
   }
