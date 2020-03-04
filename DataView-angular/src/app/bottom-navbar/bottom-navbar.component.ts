@@ -12,7 +12,4 @@ export class BottomNavbarComponent implements OnInit {
 
   ngOnInit() {
   }
-  feedback(){
-    console.log(this.activeLink)
-  }
 }

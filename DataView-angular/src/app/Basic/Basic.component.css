@@ -1,6 +1,8 @@
 #div1 {
     height:100%;
-    background-color:rgb(255, 0, 212);
+    /* background-color:rgb(255, 0, 212); */
+    background-image: url(../images/underwater.jpg);
+    background-size: cover;
 }
 app-bottom-navbar{
     position: absolute;

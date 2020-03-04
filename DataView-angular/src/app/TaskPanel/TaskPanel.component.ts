@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Task } from '../TASK';
+import { Task ,Project} from '../TASK';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogInputTaskComponent } from '../dialog-input-task/dialog-input-task.component';
 import { Observable, of } from 'rxjs';
@@ -14,7 +14,7 @@ import { TaskEditComponent } from '../task-edit/task-edit.component';
 })
 export class TaskPanelComponent implements OnInit {
   tasks: Task[];
-
+  projects:Project[];
   states = "lock";
 
   selectedTask: Task;
@@ -22,6 +22,7 @@ export class TaskPanelComponent implements OnInit {
     private taskService: TaskService,
   ) {
     this.getTasks()
+    this.getProject()
   }
 
 
@@ -43,6 +44,11 @@ export class TaskPanelComponent implements OnInit {
       .subscribe(tasks => this.tasks = tasks);
   }
 
+  getProject(): void {
+    this.taskService.getProject()
+      .subscribe(projects => this.projects = projects);
+  }
+
   changeIcon() {
     if (this.states === "lock") {
       this.states = "lock_open";
@@ -58,5 +64,9 @@ export class TaskPanelComponent implements OnInit {
     this.taskService.getHeight(this.winHeight)
       .subscribe(winHeight => this.winHeight = winHeight);
     // console.log("function", this.winHeight)
+  }
+  labelledby(project:Project):string{
+    console.log("nav"+project.projectName+"tab")
+    return "nav"+project.projectName+"tab"
   }
 }

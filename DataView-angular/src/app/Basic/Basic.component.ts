@@ -32,7 +32,7 @@ export class BasicComponent implements OnInit {
     this.winHeight = window.innerHeight
     this.taskService.getHeight(this.winHeight)
       .subscribe(winHeightStr => this.winHeight = winHeightStr);
-      // console.log( "function" ,this.winHeight)
+      console.log( "function" ,this.winHeight)
   }
 
 }

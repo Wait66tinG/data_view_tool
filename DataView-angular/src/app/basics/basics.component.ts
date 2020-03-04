@@ -1,26 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import *as Chart from 'chart.js';
 import { TaskService } from '../task.service';
-import { Task } from '../TASK';
-// export interface PeriodicElement {
-//   name: string;
-//   position: number;
-//   weight: number;
-//   symbol: string;
-// }
-
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-//   { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-//   { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-//   { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-//   { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-//   { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-//   { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-//   { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-//   { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-//   { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-// ];
+import { Task ,Project} from '../TASK';
 @Component({
   selector: 'app-basics',
   templateUrl: './basics.component.html',
@@ -29,15 +10,17 @@ import { Task } from '../TASK';
 
 export class BasicsComponent implements OnInit {
   // displayedColumns = ['position', 'name', 'weight', 'symbol'];
-  displayedColumns = ['id', 'taskname'];
+  displayedColumns = ['#', 'Project Name'];
   // dataSource = ELEMENT_DATA;
   tasks: Task[]
-  showtasks: Task[]
+  showtasks: Project[]
+  projects:Project[]
   @ViewChild('canvas1')
   public canvas1Ref: ElementRef;
   canvas1: any;
   constructor(private taskService: TaskService, ) {
     this.getTasks()
+    this.getProject()
     this.showTaskChange()
   }
 
@@ -45,17 +28,30 @@ export class BasicsComponent implements OnInit {
   }
 
   showTaskChange() {
-    this.showtasks = JSON.parse(JSON.stringify(this.tasks));
-    this.showtasks = this.showtasks.slice(0, this.tasks.length - 1);
+    this.showtasks = JSON.parse(JSON.stringify(this.projects));
+    this.showtasks = this.showtasks.slice(0, this.projects.length - 1);
     for (let i = 0; i < this.showtasks.length; i++) {
       this.showtasks[i].id += 1
     }
+    console.log( this.projects)
   }
 
+  getProject(): void {
+    this.taskService.getProject()
+      .subscribe(projects => this.projects = projects);
+      // console.log("getProject is work",this.projects)
+  }
   getTasks(): void {
     this.taskService.getTasks()
       .subscribe(tasks => this.tasks = tasks);
     // console.log(this.tasks.length, this.tasks)
+  }
+  winHeight: number
+  getHeight() {
+    this.winHeight = window.innerHeight
+    this.taskService.getHeight(this.winHeight)
+      .subscribe(winHeight => this.winHeight = winHeight);
+    // console.log("function", this.winHeight)
   }
 
   // ngAfterViewInit(): void {

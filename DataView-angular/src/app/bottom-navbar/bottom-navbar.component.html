@@ -1,9 +1,9 @@
 <nav mat-tab-nav-bar mat-align-tabs="center">
-  <a mat-tab-link ><strong> INno </strong></a>
+  <a mat-tab-link class="bottomA"><strong class="bottomA"> OUR TIME </strong></a>
   <a mat-tab-link 
     *ngFor="let link of links" 
     (click)="activeLink = link" 
-    (click)="feedback()" 
     [active]="activeLink == link"
-    [routerLink]="link"> {{link}} </a>
+    [routerLink]="link"
+    class="bottomA"> {{link}} </a>
 </nav>

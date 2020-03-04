@@ -6,3 +6,8 @@ export interface Task {
     // taskFinishDate:Date;
 
   }
+
+export interface Project {
+  id:number;
+  projectName:string;
+}
