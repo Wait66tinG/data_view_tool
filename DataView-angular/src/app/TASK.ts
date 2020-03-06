@@ -11,3 +11,8 @@ export interface Project {
   id:number;
   projectName:string;
 }
+
+export interface isActive{
+  HtmlClass :string;
+  Project : Project;
+}

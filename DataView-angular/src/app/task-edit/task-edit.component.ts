@@ -12,9 +12,9 @@ import { FormControl, FormGroupDirective, NgForm, Validators, ValidatorFn, Abstr
 
 export class TaskEditComponent implements OnInit {
   @Input()
-
+  
   task: Task;
-  lock: string;
+  // lock: string;
   newTask1: Task;
   tasks: Task[];
   lastname: Task[] = JSON.parse(localStorage.getItem('tasks'));
@@ -48,17 +48,17 @@ export class TaskEditComponent implements OnInit {
         this.lastname = task;
         // console.log("delete", task)
       });
-    this.select()
+    // this.select()
     if (this.task.taskName == "PLUS") {
       this.task = null
     }
   }
 
-  select() {
-    // console.log("select task" ,this.task)
-    this.taskService.selectedTask(this.task, this.task.id)
-      .subscribe(task1 => this.task = task1);
-  }
+  // select() {
+  //   // console.log("select task" ,this.task)
+  //   this.taskService.selectedTask(this.task, this.task.id)
+  //     .subscribe(task1 => this.task = task1);
+  // }
 
   save(newTask: string): void {
     if (newTask !== "" && newTask !== "PLUS") {
@@ -69,7 +69,7 @@ export class TaskEditComponent implements OnInit {
         });
       // console.log("save is work")
     }
-    this.select()
+    // this.select()
   }
 
   taskFormControl = new FormControl('',

@@ -1,0 +1,23 @@
+.example-card{
+    width: 100%;
+    overflow: auto;
+    border-radius:0 0 5px 5px;
+  }
+ 
+ .center-block {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+ }
+
+ .TaskButton {
+    max-width: 20rem;
+    min-width:10rem;
+    max-height: 20rem;
+    min-height:10rem;
+    font-size: larger;
+    overflow: hidden;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin: 0.1rem 0.1rem 0.1rem 0.1rem
+  }

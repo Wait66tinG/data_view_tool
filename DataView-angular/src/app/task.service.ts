@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Task } from './TASK';
-import { Project } from './TASK'
+import { Task, Project, isActive } from './TASK'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from './message.service';
 import { Observable, of } from 'rxjs';
@@ -48,7 +47,8 @@ export class TaskService {
   }
 
   Tasks: Task[] = JSON.parse(localStorage.getItem('tasks'));
-  Projects:Project[] = JSON.parse(localStorage.getItem('projects'));
+  Projects: Project[] = JSON.parse(localStorage.getItem('projects'));
+  isActives: isActive[];
 
   getTasks(): Observable<Task[]> {
     return of(this.Tasks)
