@@ -11,7 +11,7 @@ export class TaskService {
 
   taskDb() {
     const TASKS = [
-      { id: 0, taskName: '0' },
+      { id: 0, taskName: '0' ,belongToProject:'first'},
       { id: 1, taskName: '1' },
       { id: 2, taskName: '2' },
       { id: 3, taskName: '3' },
@@ -60,7 +60,7 @@ export class TaskService {
 
   addTask(task: Task): Observable<Task[]> {
     this.Tasks.pop();
-    this.Tasks.push(task, { id: this.Tasks.length + 1, taskName: "PLUS" })
+    this.Tasks.push(task, { id: this.Tasks.length + 1, taskName: "PLUS",belongToProject:"all" })
     // this.lastname.splice(this.lastname.length - 1, 0, task)
     localStorage.setItem('tasks', JSON.stringify(this.Tasks));
     return of(this.Tasks)

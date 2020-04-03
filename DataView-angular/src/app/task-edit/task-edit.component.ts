@@ -12,13 +12,13 @@ import { FormControl, FormGroupDirective, NgForm, Validators, ValidatorFn, Abstr
 
 export class TaskEditComponent implements OnInit {
   @Input()
-  
+
   task: Task;
   // lock: string;
   newTask1: Task;
   tasks: Task[];
   lastname: Task[] = JSON.parse(localStorage.getItem('tasks'));
-  selectedTask:Task
+  selectedTask: Task
   static IsAddTure: any;
   constructor(
     private taskService: TaskService,
@@ -32,12 +32,12 @@ export class TaskEditComponent implements OnInit {
   getSelectedTasks(): void {
     this.taskService.getSelectedTask()
       .subscribe(task => this.selectedTask = task);
-      console.log(this.selectedTask,"task-edit is work123")
+    console.log(this.selectedTask, "task-edit is work123")
   }
-  
+
   add(newTask: string): void {
     if (newTask !== "" && newTask !== "PLUS") {
-      this.newTask1 = { id: this.lastname.length - 1, taskName: newTask }
+      this.newTask1 = { id: this.lastname.length - 1, taskName: newTask, belongToProject: "all" }
       this.taskService.addTask(this.newTask1)
         .subscribe(task => {
           this.lastname = task;
@@ -48,6 +48,7 @@ export class TaskEditComponent implements OnInit {
   }
 
   delete(): void {
+    // this.task = this.lastname[this.task.id+1]
     // console.log(this.task.taskname)
     this.taskService.deleteTask(this.task)
       .subscribe(task => {
@@ -58,6 +59,7 @@ export class TaskEditComponent implements OnInit {
     if (this.task.taskName == "PLUS") {
       this.task = null
     }
+    this.task = this.lastname[this.task.id]
   }
 
   // select() {
@@ -69,13 +71,13 @@ export class TaskEditComponent implements OnInit {
   save(newTask: string): void {
     if (newTask !== "" && newTask !== "PLUS") {
       this.task.taskName = newTask
-      this.newTask1 = { id: this.task.id, taskName: newTask }
+      this.newTask1 = { id: this.task.id, taskName: newTask, belongToProject: "all" }
       this.taskService.saveTask(this.newTask1, this.task)
         .subscribe(task => {
           this.lastname = task;
         });
     }
-    
+
   }
 
   taskFormControl = new FormControl('',
