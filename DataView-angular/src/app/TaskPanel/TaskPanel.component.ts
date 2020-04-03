@@ -44,7 +44,7 @@ export class TaskPanelComponent implements OnInit {
     console.log(this.isActives)
   }
 
-  selectedTask: Task;
+  selectedTask: Task ;
   selectedProject:Project ;
 
   selectTask(task: Task): void {
@@ -71,11 +71,17 @@ export class TaskPanelComponent implements OnInit {
     this.getHeight()
   }
 
+  getSelectedTasks(selectedTask:Task): void {
+     this.selectedTask =selectedTask
+    // console.log(selectedTask,"TaskPanel is work123")
+  }
+  
   getTasks(): void {
     this.taskService.getTasks()
       .subscribe(tasks => this.tasks = tasks);
       // console.log(this.tasks)
   }
+
 
   getProject(): void {
     this.taskService.getProject()

@@ -32,10 +32,10 @@ export class TaskService {
       { id: 2, projectName: 'ThirdProject' },
       { id: 3, projectName: 'PLUS' },
     ];
-    // localStorage.setItem('projects', JSON.stringify(PROJECTS));
-    if (null === JSON.parse(localStorage.getItem('projects'))) {
-      localStorage.setItem('projects', JSON.stringify(PROJECTS));
-    }
+    localStorage.setItem('projects', JSON.stringify(PROJECTS));
+    // if (null === JSON.parse(localStorage.getItem('projects'))) {
+    //   localStorage.setItem('projects', JSON.stringify(PROJECTS));
+    // }
     return { PROJECTS };
   }
 
@@ -49,6 +49,7 @@ export class TaskService {
   Tasks: Task[] = JSON.parse(localStorage.getItem('tasks'));
   Projects: Project[] = JSON.parse(localStorage.getItem('projects'));
   isActives: isActive[];
+  selectTask: Task ;
 
   getTasks(): Observable<Task[]> {
     return of(this.Tasks)
@@ -93,27 +94,19 @@ export class TaskService {
     }
     return of(this.Tasks)
   }
-
-  selectedTask(task: Task, inputindex: number): Observable<Task> {
-    var states: Number = 0
-    var index: number
-    for (var i = 0; i < this.Tasks.length; i++) {
-      if (this.Tasks[i].id == task.id && this.Tasks[i].taskName == task.taskName) {
-        states = 1;
-        index = i;
-        // console.log("inif=", i)
-        break
-      }
-    }
-    if (states == 1) {
-      task = task
-    }
-    else {
-      task = this.Tasks[inputindex]
-    }
-    // console.log("index number=", states , inputindex)
+  
+  selectedTask(task: Task): Observable<Task> {
+    this.selectTask=task
+    // console.log(this.selectTask,"service is work 1")
+    this.getSelectedTask()
     return of(task)
   }
+
+  getSelectedTask(): Observable<Task>{
+    // console.log(this.selectTask,"service is work 2")
+    return of(this.selectTask)
+  }
+
   getHeight(height: number): Observable<number> {
     height -= 50
     height /= 16

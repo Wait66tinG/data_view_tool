@@ -18,17 +18,23 @@ export class TaskEditComponent implements OnInit {
   newTask1: Task;
   tasks: Task[];
   lastname: Task[] = JSON.parse(localStorage.getItem('tasks'));
+  selectedTask:Task
   static IsAddTure: any;
   constructor(
     private taskService: TaskService,
   ) {
-    // this.select()
   }
 
 
   ngOnInit(): void {
   }
 
+  getSelectedTasks(): void {
+    this.taskService.getSelectedTask()
+      .subscribe(task => this.selectedTask = task);
+      console.log(this.selectedTask,"task-edit is work123")
+  }
+  
   add(newTask: string): void {
     if (newTask !== "" && newTask !== "PLUS") {
       this.newTask1 = { id: this.lastname.length - 1, taskName: newTask }
@@ -62,14 +68,14 @@ export class TaskEditComponent implements OnInit {
 
   save(newTask: string): void {
     if (newTask !== "" && newTask !== "PLUS") {
+      this.task.taskName = newTask
       this.newTask1 = { id: this.task.id, taskName: newTask }
       this.taskService.saveTask(this.newTask1, this.task)
         .subscribe(task => {
           this.lastname = task;
         });
-      // console.log("save is work")
     }
-    // this.select()
+    
   }
 
   taskFormControl = new FormControl('',

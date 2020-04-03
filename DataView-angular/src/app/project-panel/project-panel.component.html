@@ -20,7 +20,7 @@
         <div class="tab-content" id="nav-tabContent">
             <div id="nav-home" role="tabpanel" aria-labelledby="nav-SecondProject-tab">
                 <mat-card-content align="center" style="padding-top: 1rem; overflow: hidden;">
-                    <button *ngFor="let task of tasks" class="TaskButton" mat-raised-button (click)="selectTask(task)"
+                    <button *ngFor="let task of tasks" class="TaskButton" mat-raised-button (click)="selectTask(task)  "
                         class="TaskButton" mat-button>
                         <!-- {{project.projectName}} -->
                         <p>{{task.taskName}}</p>

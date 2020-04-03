@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Task, Project, isActive } from '../TASK';
 import { TaskService } from '../task.service';
 import { FormControl, FormGroupDirective, NgForm, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
@@ -8,10 +8,11 @@ import { FormControl, FormGroupDirective, NgForm, Validators, ValidatorFn, Abstr
   styleUrls: ['./project-panel.component.css']
 })
 export class ProjectPanelComponent implements OnInit {
-  @Input()
-  
-  project: Project;
+  @Input() project: Task
+
+  @Output() selected = new EventEmitter<Task>();
   tasks: Task[];
+  task: Task
   // project :Project;
   // lock: string;
   // newTask1: Task;
@@ -43,14 +44,14 @@ export class ProjectPanelComponent implements OnInit {
     if (select == "PLUS") {
       this.selectedTask = null;
     }
-    console.log(this.selectedTask,"selectedtask is work")
-  
+      this.selected.emit(this.selectedTask);
+    // console.log("project is work",this.selectedTask)
   }
 
   getTasks(): void {
     this.taskService.getTasks()
       .subscribe(tasks => this.tasks = tasks);
-      console.log(this.tasks)
+    console.log(this.tasks)
   }
 
   // add(newTask: string): void {
