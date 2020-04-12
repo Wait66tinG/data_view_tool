@@ -1,5 +1,6 @@
-<div *ngIf="task" class="contianer " align="top">
+<div *ngIf="task&&task.id!=999" class="contianer " align="top">
     <h2>{{task.taskName}}</h2>
+    <!-- <h2>{{project.projectName}}</h2> -->
     <div>
         <mat-form-field class="inputbox">
             <mat-label>TaskName</mat-label>
@@ -21,4 +22,16 @@
         </mat-form-field>
     </div>
     <button mat-button (click)="add(newTask.value)">Add</button>
+</div>
+<div *ngIf="task.id==999" class="contianer " align="top">
+    <h2>{{project.projectName}}</h2>
+    <!-- <h2>{{project.projectName}}</h2> -->
+    <div>
+        <mat-form-field class="inputbox">
+            <mat-label>ProjectName</mat-label>
+            <input matInput #newProject (keyup.enter)="saveProject(newProject.value)">
+        </mat-form-field>
+    </div>
+    <button mat-button (click)="saveProject(newProject.value)">Save</button>
+    <!-- <button mat-button (click)="delete()">Delete</button> -->
 </div>

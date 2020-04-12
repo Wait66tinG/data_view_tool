@@ -4,20 +4,20 @@
       <div id="TaskNav">
         <div class="nav nav-tabs " id="nav-tab" role="tablist">
           <a *ngFor="let data of isActives ; " class="{{data.HtmlClass}}" href="#nav-home" data-toggle="tab" role="tab"
-            aria-controls="nav-home" aria-selected="true" style="font-size:1rem"
+            aria-controls="nav-home" aria-selected="true" style="font-size:1rem ;color: #000;"
             (click)="selectProject(data.Project)">{{data.Project.projectName}}</a>
         </div>
       </div>
       <mat-card class="example-card" [style.height]=" winHeight*0.85 +'rem'">
-        <app-project-panel [project]="selectedProject" (selected)="getSelectedTasks($event)"></app-project-panel>
+        <app-project-panel [project]="selectedProject" (transTaskToTaskPanel)="getSelectedTasks($event)">
+        </app-project-panel>
       </mat-card>
 
     </div>
 
     <div class="col-md-3 align-self-center" align="center" [style.height]=" winHeight*0.89 +'rem'"
       style="background-color: rgba(255, 255, 255, 0.5);padding-top: 1rem;">
-      <app-task-edit [task]="selectedTask"
-      ></app-task-edit>
+      <app-task-edit [task]="selectedTask" [project]="selectedProject"></app-task-edit>
     </div>
   </div>
 </div>

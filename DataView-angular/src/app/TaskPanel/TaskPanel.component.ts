@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { Task, Project, isActive } from '../TASK';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogInputTaskComponent } from '../dialog-input-task/dialog-input-task.component';
@@ -19,33 +19,36 @@ export class TaskPanelComponent implements OnInit {
   tasks: Task[];
   projects: Project[];
   states = "lock";
-  isActives: isActive[] =[];
+  isActives: isActive[] = [];
+  project: Project;
 
-  
+
   constructor(
     private taskService: TaskService,
   ) {
     this.getTasks()
     this.getProject()
     this.aTagClass()
+    this.selectProject(this.projects[0])
+    // console.log(this.project,"TaskPanel is work")
   }
 
 
   aTagClass() {
     for (let i = 0; i < this.projects.length; i++) {
       if (this.projects[i].id == 0) {
-        this.isActives.push({HtmlClass:"nav-item nav-link active", Project:this.projects[i]})
+        this.isActives.push({ HtmlClass: "nav-item nav-link active", Project: this.projects[i] })
       }
-      else{
-        this.isActives.push({HtmlClass:"nav-item nav-link", Project:this.projects[i]})
+      else {
+        this.isActives.push({ HtmlClass: "nav-item nav-link", Project: this.projects[i] })
       }
     }
     // this.isActives.push({ HtmlClass: "nav-item nav-link active", Project: "123" })
-    console.log(this.isActives)
+    // console.log(this.isActives)
   }
 
-  selectedTask: Task ;
-  selectedProject:Project ;
+  selectedTask: Task;
+  selectedProject: Project;
 
   selectTask(task: Task): void {
     this.selectedTask = task;
@@ -53,41 +56,47 @@ export class TaskPanelComponent implements OnInit {
     if (select == "PLUS") {
       this.selectedTask = null;
     }
-    console.log(this.selectedTask,"selectedtask is work")
-  
+    // console.log(this.selectedTask, "selectedtask is work")
+
   }
 
   selectProject(project: Project): void {
     this.selectedProject = project;
-    var select = project.projectName
-    if (select == "PLUS") {
+    var select2 = project.projectName
+    if (select2 == "PLUS") {
       this.selectedProject = null;
     }
-    console.log(this.selectedProject,"selected is work")
-  
+    // this.transProjectToProject.emit(this.selectedProject);
+    // this.taskService.selectProject = project;
+    // console.log(this.selectedProject, this.taskService.selectProject, "selected is work")
+    this.taskService.selectedProject(project)
+    this.selectedTask={id:999,taskName:'',belongToProject:''}
+    // console.log(this.selectedProject)
+      // .subscribe(tasks => this.selectedProject = tasks);
   }
 
   ngOnInit() {
     this.getHeight()
   }
 
-  getSelectedTasks(selectedTask:Task): void {
-     this.selectedTask =selectedTask
+  getSelectedTasks(selectedTask: Task): void {
+    this.selectedTask = selectedTask
     // console.log(selectedTask,"TaskPanel is work123")
   }
-  
+
   getTasks(): void {
     this.taskService.getTasks()
       .subscribe(tasks => this.tasks = tasks);
-      // console.log(this.tasks)
+    // console.log(this.tasks)
   }
 
 
   getProject(): void {
     this.taskService.getProject()
       .subscribe(projects => this.projects = projects);
-      this.selectedProject = this.projects[0]
-    // console.log(this.projects, "get project is work")
+    this.selectedProject = this.projects[0]
+    this.project = this.projects[0];
+    // console.log(this.project,"12321")
   }
 
   changeIcon() {

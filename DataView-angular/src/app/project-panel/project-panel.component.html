@@ -1,39 +1,25 @@
-<!-- <mat-card class="example-card" [style.height]=" winHeight*0.85 +'rem'">
-    <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show " id="{{project.projectName}}" role="tabpanel"
-            aria-labelledby="nav-SecondProject-tab" *ngFor="let project of projects">
-            <mat-card-content align="center" style="padding-top: 1rem; overflow: hidden;">
-                <button *ngFor="let task of tasks" class="TaskButton" mat-raised-button (click)="select(task)"
-                    class="TaskButton" mat-button>
-                    {{project.projectName}}
-                    <p>{{task.taskName}}</p>
-                </button>
-            </mat-card-content>
-        </div>
-        <div class="tab-pane fade" id="SecondProject" role="tabpanel" aria-labelledby="nav-profile-tab">2</div>
-        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">3</div>
-    </div>
-</mat-card> -->
-
-
 <div *ngIf="project" class="contianer " align="top">
-        <div class="tab-content" id="nav-tabContent">
-            <div id="nav-home" role="tabpanel" aria-labelledby="nav-SecondProject-tab">
-                <mat-card-content align="center" style="padding-top: 1rem; overflow: hidden;">
-                    <button *ngFor="let task of tasks" class="TaskButton" mat-raised-button (click)="selectTask(task)  "
-                        class="TaskButton" mat-button>
-                        <!-- {{project.projectName}} -->
+    <!-- <button (click)="showTasks()">{{project.projectName}}</button> -->
+    <div class="tab-content" id="nav-tabContent">
+        <div id="nav-home" role="tabpanel" aria-labelledby="nav-SecondProject-tab">
+            <mat-card-content align="center" style="padding-top: 1rem; overflow: hidden;">
+                <div *ngFor="let task of tasks" style="display: inline;">
+                    <button *ngIf="task.belongToProject == project.projectName || task.belongToProject == ''" class="TaskButton" mat-raised-button (click)="selectTask(task)  " class="TaskButton"
+                        mat-button>
+                        <!-- <h1>{{project.projectName}}</h1> -->
                         <p>{{task.taskName}}</p>
                     </button>
-                </mat-card-content>
-            </div>
-            <div class="tab-pane fade" id="SecondProject" role="tabpanel" aria-labelledby="nav-profile-tab">2</div>
-            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">3</div>
+                </div>
+
+            </mat-card-content>
         </div>
+        <!-- <div class="tab-pane fade" id="SecondProject" role="tabpanel" aria-labelledby="nav-profile-tab">2</div> -->
+        <!-- <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">3</div> -->
+    </div>
 </div>
-<div *ngIf="project==null">
-    null
-    <!-- <h2>Write Down New Task</h2>
+<!-- <div *ngIf="project==null">
+    null -->
+<!-- <h2>Write Down New Task</h2>
     <div>
         <mat-form-field class="inputbox">
             <mat-label>Taskname</mat-label>
@@ -44,4 +30,4 @@
         </mat-form-field>
     </div>
     <button mat-button (click)="add(newTask.value)">Add</button> -->
-</div>
+<!-- </div> -->

@@ -11,13 +11,13 @@ export class TaskService {
 
   taskDb() {
     const TASKS = [
-      { id: 0, taskName: '0' ,belongToProject:'first'},
-      { id: 1, taskName: '1' },
-      { id: 2, taskName: '2' },
-      { id: 3, taskName: '3' },
-      { id: 4, taskName: '4' },
-      { id: 5, taskName: '5' },
-      { id: 6, taskName: 'PLUS' },
+      { id: 0, taskName: '背单词' ,belongToProject:'学英语'},
+      { id: 1, taskName: '学语法' ,belongToProject:'学英语'},
+      { id: 2, taskName: '练口语' ,belongToProject:'学英语'},
+      { id: 3, taskName: '写作文' ,belongToProject:'学英语'},
+      { id: 4, taskName: '学Java' ,belongToProject:'学编程'},
+      { id: 5, taskName: '学Html' ,belongToProject:'学编程'},
+      { id: 6, taskName: 'PLUS' ,belongToProject:''},
     ];
     // localStorage.setItem('tasks', JSON.stringify(TASKS));
     if (null === JSON.parse(localStorage.getItem('tasks'))) {
@@ -27,15 +27,15 @@ export class TaskService {
   }
   projectDb() {
     const PROJECTS = [
-      { id: 0, projectName: 'FirstProject' },
-      { id: 1, projectName: 'SecondProject' },
+      { id: 0, projectName: '学英语' },
+      { id: 1, projectName: '学编程' },
       { id: 2, projectName: 'ThirdProject' },
-      { id: 3, projectName: 'PLUS' },
+  
     ];
-    localStorage.setItem('projects', JSON.stringify(PROJECTS));
-    // if (null === JSON.parse(localStorage.getItem('projects'))) {
-    //   localStorage.setItem('projects', JSON.stringify(PROJECTS));
-    // }
+    // localStorage.setItem('projects', JSON.stringify(PROJECTS));
+    if (null === JSON.parse(localStorage.getItem('projects'))) {
+      localStorage.setItem('projects', JSON.stringify(PROJECTS));
+    }
     return { PROJECTS };
   }
 
@@ -50,6 +50,7 @@ export class TaskService {
   Projects: Project[] = JSON.parse(localStorage.getItem('projects'));
   isActives: isActive[];
   selectTask: Task ;
+  
 
   getTasks(): Observable<Task[]> {
     return of(this.Tasks)
@@ -60,7 +61,7 @@ export class TaskService {
 
   addTask(task: Task): Observable<Task[]> {
     this.Tasks.pop();
-    this.Tasks.push(task, { id: this.Tasks.length + 1, taskName: "PLUS",belongToProject:"all" })
+    this.Tasks.push(task, { id: this.Tasks.length + 1, taskName: "PLUS",belongToProject:'' })
     // this.lastname.splice(this.lastname.length - 1, 0, task)
     localStorage.setItem('tasks', JSON.stringify(this.Tasks));
     return of(this.Tasks)
@@ -94,12 +95,30 @@ export class TaskService {
     }
     return of(this.Tasks)
   }
+
+  saveProject(project1: Project, project2: Project): Observable<Project[]> {
+    for (var i = 0; i < this.Projects.length; i++) {
+      if (this.Projects[i].id == project2.id && this.Projects[i].projectName == project2.projectName) {
+        this.Projects.splice(i, 1, project1)
+        // console.log("delete index =", i)
+        // var index = i;
+        localStorage.setItem('projects', JSON.stringify(this.Projects));
+      }
+    }
+    return of(this.Projects)
+  }
   
   selectedTask(task: Task): Observable<Task> {
     this.selectTask=task
     // console.log(this.selectTask,"service is work 1")
     this.getSelectedTask()
     return of(task)
+  }
+
+  selectProject:Project;
+  selectedProject(project:Project): Observable<Project>{
+    this.selectProject = project
+    return of(this.selectProject)
   }
 
   getSelectedTask(): Observable<Task>{

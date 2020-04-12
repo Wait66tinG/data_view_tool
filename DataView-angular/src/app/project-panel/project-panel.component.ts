@@ -8,12 +8,12 @@ import { FormControl, FormGroupDirective, NgForm, Validators, ValidatorFn, Abstr
   styleUrls: ['./project-panel.component.css']
 })
 export class ProjectPanelComponent implements OnInit {
-  @Input() project: Task
-
-  @Output() selected = new EventEmitter<Task>();
+  @Input() project: Project;
+  // project: Project;
+  @Output() transTaskToTaskPanel = new EventEmitter<Task>();
   tasks: Task[];
   task: Task
-  // project :Project;
+  // selectedProject: Project;
   // lock: string;
   // newTask1: Task;
   // tasks: Task[];
@@ -22,6 +22,7 @@ export class ProjectPanelComponent implements OnInit {
   constructor(
     private taskService: TaskService,
   ) {
+    // this.project = this.taskService.selectProject
     this.getTasks()
   }
 
@@ -34,7 +35,7 @@ export class ProjectPanelComponent implements OnInit {
     this.winHeight = window.innerHeight
     this.taskService.getHeight(this.winHeight)
       .subscribe(winHeight => this.winHeight = winHeight);
-    console.log("function", this.winHeight)
+    // console.log("function", this.winHeight)
   }
 
   selectedTask: Task;
@@ -44,16 +45,19 @@ export class ProjectPanelComponent implements OnInit {
     if (select == "PLUS") {
       this.selectedTask = null;
     }
-      this.selected.emit(this.selectedTask);
+    this.transTaskToTaskPanel.emit(this.selectedTask);
     // console.log("project is work",this.selectedTask)
+    // console.log(this.project, "12321")
   }
 
   getTasks(): void {
     this.taskService.getTasks()
       .subscribe(tasks => this.tasks = tasks);
-    console.log(this.tasks)
   }
 
+  getprojects(): void {
+
+  }
   // add(newTask: string): void {
   //   if (newTask !== "" && newTask !== "PLUS") {
   //     this.newTask1 = { id: this.lastname.length - 1, taskName: newTask }
